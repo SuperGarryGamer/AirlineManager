@@ -58,6 +58,10 @@ public class Main extends Application {
         worldMap.setPreserveRatio(true);
         worldMap.setFitWidth(1700);
 
+        addFlightViewButton.setOnAction(e -> {
+            primaryStage.setScene(addFlightView);
+        });
+
         addFlight.add(flightNumberField, 1, 1);
 
         primaryStage.setScene(viewFlightView);
