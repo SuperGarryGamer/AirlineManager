@@ -39,6 +39,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        DBController.connect();
         launch(args);
     }
 
@@ -61,5 +62,7 @@ public class Main extends Application {
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
+
+
     }
 }
