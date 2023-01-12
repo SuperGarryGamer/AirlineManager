@@ -33,6 +33,7 @@ public class Main extends Application {
 
     ImageView worldMap = new ImageView(mapImage);
 
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -49,6 +50,10 @@ public class Main extends Application {
         viewFlight.add(flightsScrollPane, 0, 1);
         flightsScrollPane.setContent(flightsStackPane);
         viewFlight.add(worldMap, 1, 0, 1, 2);
+        worldMap.setPreserveRatio(true);
+        worldMap.setFitWidth(700);
+
+
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
