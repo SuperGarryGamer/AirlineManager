@@ -67,6 +67,6 @@ public class Main extends Application {
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
 
-
+        addFlight.add();
     }
 }
