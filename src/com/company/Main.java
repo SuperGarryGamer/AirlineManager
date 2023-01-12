@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -22,6 +23,9 @@ public class Main extends Application {
     ScrollPane flightsScrollPane = new ScrollPane();
     StackPane flightsStackPane = new StackPane();
     Image mapImage;
+
+    TextField flightNumberField = new TextField();
+
 
     {
         try {
@@ -42,8 +46,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         GridPane addFlight = new GridPane();
         GridPane viewFlight = new GridPane();
-        Scene addFlightView = new Scene(addFlight, 1280, 720);
-        Scene viewFlightView = new Scene(viewFlight, 1280, 720);
+        Scene addFlightView = new Scene(addFlight, 1920, 1000);
+        Scene viewFlightView = new Scene(viewFlight, 1920, 1000);
         System.out.println("starting app =w=");
 
         viewFlight.add(addFlightViewButton, 0, 0);
@@ -51,9 +55,9 @@ public class Main extends Application {
         flightsScrollPane.setContent(flightsStackPane);
         viewFlight.add(worldMap, 1, 0, 1, 2);
         worldMap.setPreserveRatio(true);
-        worldMap.setFitWidth(700);
+        worldMap.setFitWidth(1700);
 
-
+        addFlight.add(flightNumberField, 1, 1);
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
