@@ -32,6 +32,7 @@ public class Main extends Application {
     TextField flightNumberField = new TextField("Flight numba");
     Button addFlightInfo = new Button("Add flight");
 
+
     {
         try {
             mapImage = new Image(getClass().getResource("worldmap.png").toURI().toString());
@@ -55,6 +56,11 @@ public class Main extends Application {
         Scene addFlightView = new Scene(addFlight, 1920, 1000);
         Scene viewFlightView = new Scene(viewFlight, 1920, 1000);
         System.out.println("starting app =w=");
+        viewFlight.setHgap(10);
+        viewFlight.setVgap(10);
+        addFlight.setHgap(10);
+        addFlight.setVgap(10);
+
 
         viewFlight.add(addFlightViewButton, 0, 0);
         viewFlight.add(flightsScrollPane, 0, 1);
@@ -63,16 +69,20 @@ public class Main extends Application {
         worldMap.setPreserveRatio(true);
         worldMap.setFitWidth(1700);
 
+
+
         addFlightViewButton.setOnAction(e -> {
             primaryStage.setScene(addFlightView);
         });
 
         addFlight.add(flightNumberField, 1, 1);
-        addFlight.add(addArrivalAP, 2, 1);
+        addFlight.add(addArrivalAP, 1, 2);
         addFlight.add(addDepartureAP, 2, 2);
-        addFlight.add(addArrivalTime, 3, 1);
-        addFlight.add(addDepartureTime, 3, 2);
-        addFlight.add(addFlightInfo,4,2);
+        addFlight.add(addArrivalTime, 1, 3);
+        addFlight.add(addDepartureTime, 2, 3);
+        addFlight.add(addFlightInfo,1,4);
+
+        //addFlightViewButton.setOnAction();
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
