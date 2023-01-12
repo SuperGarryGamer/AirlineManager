@@ -3,6 +3,7 @@ package com.company;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,8 @@ public class Main extends Application {
 
     TextField addArrivalAP = new TextField("Arrival airport");
     TextField addDepartureAP = new TextField("Departure airport");
-    TextField addArrivalTime = new TextField("Arrival time");
-    TextField addDepartureTime = new TextField("Departure time");
+    DatePicker addArrivalTime = new DatePicker();
+    DatePicker addDepartureTime = new DatePicker();
     TextField flightNumberField = new TextField("Flight numba");
     Button addFlightInfo = new Button("Add flight");
 
@@ -82,7 +84,17 @@ public class Main extends Application {
         addFlight.add(addDepartureTime, 2, 3);
         addFlight.add(addFlightInfo,1,4);
 
-        //addFlightViewButton.setOnAction();
+        addFlightViewButton.setOnAction(event -> {
+            ZoneId zoneid = ZoneId.systemDefault();
+            flightNumberField.getText();
+            addArrivalAP.getText();
+            addDepartureAP.getText();
+            //addArrivalTime.;
+            //addDepartureTime.getText();
+
+            // DBController.request("insert into flights values (%s, %s, %s")
+                     //   addd this shit into the database
+        });
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
