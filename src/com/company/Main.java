@@ -3,6 +3,7 @@ package com.company;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +29,11 @@ public class Main extends Application {
 
     TextField addArrivalAP = new TextField("Arrival airport");
     TextField addDepartureAP = new TextField("Departure airport");
-    TextField addArrivalTime = new TextField("Arrival time");
-    TextField addDepartureTime = new TextField("Departure time");
+    DatePicker addArrivalTime = new DatePicker();
+    DatePicker addDepartureTime = new DatePicker();
     TextField flightNumberField = new TextField("Flight numba");
     Button addFlightInfo = new Button("Add flight");
+
 
     {
         try {
@@ -55,6 +58,11 @@ public class Main extends Application {
         Scene addFlightView = new Scene(addFlight, 1920, 1000);
         Scene viewFlightView = new Scene(viewFlight, 1920, 1000);
         System.out.println("starting app =w=");
+        viewFlight.setHgap(10);
+        viewFlight.setVgap(10);
+        addFlight.setHgap(10);
+        addFlight.setVgap(10);
+
 
         viewFlight.add(addFlightViewButton, 0, 0);
         viewFlight.add(flightsScrollPane, 0, 1);
@@ -63,16 +71,30 @@ public class Main extends Application {
         worldMap.setPreserveRatio(true);
         worldMap.setFitWidth(1700);
 
+
+
         addFlightViewButton.setOnAction(e -> {
             primaryStage.setScene(addFlightView);
         });
 
         addFlight.add(flightNumberField, 1, 1);
-        addFlight.add(addArrivalAP, 2, 1);
+        addFlight.add(addArrivalAP, 1, 2);
         addFlight.add(addDepartureAP, 2, 2);
-        addFlight.add(addArrivalTime, 3, 1);
-        addFlight.add(addDepartureTime, 3, 2);
-        addFlight.add(addFlightInfo,4,2);
+        addFlight.add(addArrivalTime, 1, 3);
+        addFlight.add(addDepartureTime, 2, 3);
+        addFlight.add(addFlightInfo,1,4);
+
+        addFlightViewButton.setOnAction(event -> {
+            ZoneId zoneid = ZoneId.systemDefault();
+            flightNumberField.getText();
+            addArrivalAP.getText();
+            addDepartureAP.getText();
+            //addArrivalTime.;
+            //addDepartureTime.getText();
+
+            // DBController.request("insert into flights values (%s, %s, %s")
+                     //   addd this shit into the database
+        });
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
