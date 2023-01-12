@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
@@ -24,8 +25,12 @@ public class Main extends Application {
     StackPane flightsStackPane = new StackPane();
     Image mapImage;
 
-    TextField flightNumberField = new TextField();
-
+    TextField addArrivalAP = new TextField("Arrival airport");
+    TextField addDepartureAP = new TextField("Departure airport");
+    TextField addArrivalTime = new TextField("Arrival time");
+    TextField addDepartureTime = new TextField("Departure time");
+    TextField flightNumberField = new TextField("Flight numba");
+    Button addFlightInfo = new Button("Add flight");
 
     {
         try {
@@ -63,10 +68,13 @@ public class Main extends Application {
         });
 
         addFlight.add(flightNumberField, 1, 1);
+        addFlight.add(addArrivalAP, 2, 1);
+        addFlight.add(addDepartureAP, 2, 2);
+        addFlight.add(addArrivalTime, 3, 1);
+        addFlight.add(addDepartureTime, 3, 2);
+        addFlight.add(addFlightInfo,4,2);
 
         primaryStage.setScene(viewFlightView);
         primaryStage.show();
-
-        addFlight.add();
     }
 }
