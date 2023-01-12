@@ -1,8 +1,6 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  *
@@ -34,5 +32,17 @@ public class DBController {
             }
         }
         return conn;
+    }
+
+    public static ResultSet request(String sql) throws SQLException {
+        try {
+            Connection conn = DBController.connect();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            return rs;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            throw throwables;
+        }
     }
 }
