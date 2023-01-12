@@ -20,7 +20,7 @@ public class Flight {
     public void setArrivalAirport(String arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
-
+//g
     public String getDepartureAirport() {
         return departureAirport;
     }
