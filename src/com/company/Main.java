@@ -44,7 +44,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        DBController.connect();
+        System.out.println(DBController.request("select * from flights"));
         launch(args);
     }
 

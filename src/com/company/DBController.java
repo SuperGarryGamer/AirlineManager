@@ -1,6 +1,7 @@
 package com.company;
 
 import java.sql.*;
+import java.util.List;
 
 /**
  *
@@ -34,7 +35,7 @@ public class DBController {
         return conn;
     }
 
-    public static ResultSet request(String sql) throws SQLException {
+    public static ResultSet request(String sql) {
         try {
             Connection conn = DBController.connect();
             Statement statement = conn.createStatement();
@@ -42,7 +43,7 @@ public class DBController {
             return rs;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            throw throwables;
+            //return ResultSet.
         }
     }
 }
