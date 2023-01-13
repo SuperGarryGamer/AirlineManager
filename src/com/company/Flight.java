@@ -3,14 +3,34 @@ package com.company;
 import java.time.LocalDate;
 
 public class Flight {
+    private String flightNumber;
     private String arrivalAirport, departureAirport;
+    private String airline;
     private LocalDate arrivalTime, departureTime;
 
-    public Flight(String arrivalAirport, String departureAirport, LocalDate arrivalTime, LocalDate departureTime) {
+    public Flight(String flightNumber, String arrivalAirport, String departureAirport, LocalDate arrivalTime, LocalDate departureTime, String airline) {
+        this.flightNumber = flightNumber;
         this.arrivalAirport = arrivalAirport;
         this.departureAirport = departureAirport;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
+        this.airline = airline;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public String getAirline() {
+        return airline;
+    }
+
+    public void setAirline(String airline) {
+        this.airline = airline;
     }
 
     public String getArrivalAirport() {

@@ -1,6 +1,9 @@
 package com.company;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,12 +15,13 @@ public class DBController {
      * Connect to a sample database
      */
     public static Connection connect() {
-        Connection conn = null;
+        Connection conn;
         try {
             // db parameters
             String url = "jdbc:sqlite:C:flights.db";
             // create a connection to the database
-            conn = DriverManager.getConnection(url);
+            Connection conn = DriverManager.getConnection(url);
+            return conn;
 
             System.out.println("Connection to SQLite has been established.");
 
@@ -35,15 +39,46 @@ public class DBController {
         return conn;
     }
 
-    public static ResultSet request(String sql) {
+    public static List<Flight> getAllFlights() {
+        List flights = new ArrayList<Flight>();
         try {
             Connection conn = DBController.connect();
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            return rs;
+            ResultSet rs = statement.executeQuery("select * from flights");
+
+            while (rs.next()) {
+                String flightID = rs.getString("flightID");
+                String arrivalIATA = rs.getString("arrivalIATA");
+                String departureIATA = rs.getString("departureIATA");
+                String arrivalTime = rs.getString("arrivalTime");
+                String departureTime = rs.getString("departureTime");
+                String airline = rs.getString("airline");
+
+                Flight f = new Flight(flightID,
+                        arrivalIATA,
+                        departureIATA,
+                        LocalDate.parse(arrivalTime),
+                        LocalDate.parse(departureTime),
+                        airline);
+            }
+            return flights;
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            //return ResultSet.
+            return flights;
         }
+    }
+
+    public static boolean query(String sql) {
+        Connection conn = DBController.connect();
+        try {
+            Statement statement = conn.createStatement();
+            statement.executeQuery(sql);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
     }
 }
