@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,16 +85,19 @@ public class Main extends Application {
         addFlight.add(addDepartureTime, 2, 3);
         addFlight.add(addFlightInfo,1,4);
 
-        addFlightViewButton.setOnAction(event -> {
+        addFlightInfo.setOnAction(event -> {
             ZoneId zoneid = ZoneId.systemDefault();
-            flightNumberField.getText();
-            addArrivalAP.getText();
-            addDepartureAP.getText();
-            //addArrivalTime.;
-            //addDepartureTime.getText();
+            String number = flightNumberField.getText();
+            String arrivalAP = addArrivalAP.getText();
+            String departureAP = addDepartureAP.getText();
+            String arrivalTime = addArrivalTime.getValue().toString();
+            String departureTime = addDepartureTime.getValue().toString();
 
-            // DBController.request("insert into flights values (%s, %s, %s")
-                     //   addd this shit into the database
+            try {
+                DBController.request(String.format("insert into flights values (%s, %s, %s, %s, %s, %s", zoneid, number, arrivalAP, departureAP, arrivalTime, departureTime));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         });
 
         primaryStage.setScene(viewFlightView);
