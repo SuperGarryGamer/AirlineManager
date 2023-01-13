@@ -31,9 +31,11 @@ public class Main extends Application {
     TextField addArrivalAP = new TextField("Arrival airport");
     TextField addDepartureAP = new TextField("Departure airport");
     DatePicker addArrivalTime = new DatePicker();
+    TextField addAirlineField = new TextField("airline");
     DatePicker addDepartureTime = new DatePicker();
     TextField flightNumberField = new TextField("Flight numba");
     Button addFlightInfo = new Button("Add flight");
+
 
 
     {
@@ -80,21 +82,23 @@ public class Main extends Application {
         });
 
         addFlight.add(flightNumberField, 1, 1);
+        addFlight.add(addAirlineField, 2, 1);
         addFlight.add(addArrivalAP, 1, 2);
         addFlight.add(addDepartureAP, 2, 2);
         addFlight.add(addArrivalTime, 1, 3);
         addFlight.add(addDepartureTime, 2, 3);
         addFlight.add(addFlightInfo,1,4);
 
+
         addFlightInfo.setOnAction(event -> {
-            ZoneId zoneid = ZoneId.systemDefault();
             String number = flightNumberField.getText();
             String arrivalAP = addArrivalAP.getText();
             String departureAP = addDepartureAP.getText();
             String arrivalTime = addArrivalTime.getValue().toString();
             String departureTime = addDepartureTime.getValue().toString();
+            String airline = addAirlineField.getText();
 
-            DBController.query(String.format("insert into flights values (%s, %s, %s, %s, %s, %s", zoneid, number, arrivalAP, departureAP, arrivalTime, departureTime));
+            DBController.query(String.format("insert into flights (flightID, arrivalIATA, departureIATA, arrivalTime, departureTime, airline) values ('%s', '%s', '%s', '%s', '%s', '%s');", number, arrivalAP, departureAP, arrivalTime, departureTime, airline));
         });
 
         primaryStage.setScene(viewFlightView);

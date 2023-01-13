@@ -64,7 +64,7 @@ public class DBController {
         Connection conn = DBController.connect();
         try {
             Statement statement = conn.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
