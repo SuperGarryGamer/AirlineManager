@@ -48,12 +48,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println(DBController.getAllFlights().toString());
+
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println(DBController.getAllFlights().toString());
         GridPane addFlight = new GridPane();
         GridPane viewFlight = new GridPane();
         Scene addFlightView = new Scene(addFlight, 1920, 1000);

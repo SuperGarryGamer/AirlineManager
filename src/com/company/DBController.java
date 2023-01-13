@@ -30,7 +30,7 @@ public class DBController {
     }
 
     public static List<Flight> getAllFlights() {
-        List flights = new ArrayList<Flight>();
+        List<Flight> flights = new ArrayList<Flight>();
         try {
             Connection conn = DBController.connect();
             Statement statement = conn.createStatement();
