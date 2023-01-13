@@ -15,28 +15,18 @@ public class DBController {
      * Connect to a sample database
      */
     public static Connection connect() {
-        Connection conn;
         try {
             // db parameters
+            Connection conn = null;
             String url = "jdbc:sqlite:C:flights.db";
             // create a connection to the database
-            Connection conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url);
             return conn;
-
-            System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            return null;
         }
-        return conn;
     }
 
     public static List<Flight> getAllFlights() {
@@ -60,6 +50,7 @@ public class DBController {
                         LocalDate.parse(arrivalTime),
                         LocalDate.parse(departureTime),
                         airline);
+                flights.add(f);
             }
             return flights;
 

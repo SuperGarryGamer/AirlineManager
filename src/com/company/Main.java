@@ -93,11 +93,7 @@ public class Main extends Application {
             String arrivalTime = addArrivalTime.getValue().toString();
             String departureTime = addDepartureTime.getValue().toString();
 
-            try {
-                DBController.request(String.format("insert into flights values (%s, %s, %s, %s, %s, %s", zoneid, number, arrivalAP, departureAP, arrivalTime, departureTime));
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            DBController.query(String.format("insert into flights values (%s, %s, %s, %s, %s, %s", zoneid, number, arrivalAP, departureAP, arrivalTime, departureTime));
         });
 
         primaryStage.setScene(viewFlightView);
